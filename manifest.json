@@ -2,11 +2,21 @@
   "manifest_version": 3,
   "name": "RC Theme",
   "version": "0.1.0",
-  "description": "Personal restyle for robocontest.uz",
+  "description": "Unofficial. Classic look for robocontest.uz: classic palette, system mouse cursor, cleaner language menu.",
   "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
   "action": {
     "default_title": "RC Theme",
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
   },
   "content_scripts": [
     {
