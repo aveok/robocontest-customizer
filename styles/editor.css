@@ -1,0 +1,19 @@
+/*
+ * RC Theme: code editor (CodeMirror 6, problem page + judge.robocontest.uz).
+ * CodeMirror injects its own theme styles at runtime, so !important is
+ * sometimes needed here.
+ */
+
+html.rc-theme .cm-editor {
+  font-size: 14px;
+}
+
+html.rc-theme .cm-editor .cm-content,
+html.rc-theme .cm-editor .cm-gutters {
+  font-family: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+}
+
+html.rc-theme .cm-editor .cm-gutters {
+  background: var(--card);
+  border-right: 1px solid var(--border);
+}

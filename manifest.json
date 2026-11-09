@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "RC Theme",
+  "version": "0.1.0",
+  "description": "Personal restyle for robocontest.uz",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "RC Theme",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://robocontest.uz/*", "https://*.robocontest.uz/*"],
+      "css": ["styles/theme.css", "styles/editor.css"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ]
+}
