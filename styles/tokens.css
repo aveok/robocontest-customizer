@@ -6,8 +6,8 @@
  * --card, --primary, ...); we set those here, plus our own --rc-* tokens.
  *
  * Scale:   text 12 / 14 / 16 / 20 / 24px · space 4 / 8 / 12 / 16 / 24 / 32px
- * Surface: --rc-outside (page around the shell) < --background (shell)
- *          < --rc-sidebar < --card (cards, inputs) < --popover (menus)
+ * Surface: --rc-page (around the islands) < --background (sidebar and
+ *          content islands) < --card (cards, inputs) < --popover (menus)
  *
  * Scoped under html.rc-theme (popup toggle removes it). html.rc-theme (0,1,1)
  * beats the site's :root and [data-ui=...] rules; unlayered beats @layer.
@@ -16,11 +16,11 @@
 
 /* ---------- Light ---------- */
 html.rc-theme {
-  --rc-outside: #eef0f3;
-  --rc-sidebar: #f7f8fa;
+  --rc-page: #eef0f3;
+  --rc-island-border: #e3e6ea;
   --rc-row-line: #eef0f2;
-  --rc-row-hover: #f6f7f9;
-  --rc-head-text: #8a9099;
+  --rc-row-hover: #f3f4f6;
+  --rc-head-text: #6b7280; /* 4.8:1 on white */
   --rc-control-h: 2rem;
 
   --background: #ffffff;
@@ -55,7 +55,7 @@ html.rc-theme {
   --sidebar-foreground: #4b5160;
   --sidebar-primary: #2563eb;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #e8eefc;
+  --sidebar-accent: #f2f3f5; /* = --muted: neutral active item */
   --sidebar-accent-foreground: #16181d;
   --sidebar-border: #e6e8eb;
   --sidebar-ring: #2563eb;
@@ -64,27 +64,27 @@ html.rc-theme {
 
 /* ---------- Dark ---------- */
 html.rc-theme.dark {
-  --rc-outside: #0b0c0e;
-  --rc-sidebar: #0e0f11;
-  --rc-row-line: #1c1e22;
-  --rc-row-hover: #17181c;
-  --rc-head-text: #6f747d;
+  --rc-page: #09090b;
+  --rc-island-border: rgba(255, 255, 255, 0.06);
+  --rc-row-line: #1e2024;
+  --rc-row-hover: #1b1d21;
+  --rc-head-text: #8b9099; /* 5.6:1 on #131417 */
 
-  --background: #111214;
-  --background2: #16171a;
+  --background: #131417;
+  --background2: #18191d;
   --foreground: #e8e9eb;
-  --card: #16171a;
+  --card: #18191d;
   --card-foreground: #e8e9eb;
-  --popover: #1b1c20;
+  --popover: #1e1f23;
   --popover-foreground: #e8e9eb;
   --primary: #3b6fd8;
   --primary-foreground: #ffffff;
   --signal: #7aa8ff;
-  --secondary: #1f2125;
+  --secondary: #232529;
   --secondary-foreground: #e8e9eb;
-  --muted: #1f2125;
+  --muted: #232529;
   --muted-foreground: #8b9099;
-  --accent: #1f2125;
+  --accent: #232529;
   --accent-foreground: #e8e9eb;
   --success: #3ccf91;
   --success-foreground: #0b0c0e;
@@ -94,17 +94,17 @@ html.rc-theme.dark {
   --danger-foreground: #0b0c0e;
   --info: #7aa8ff;
   --info-foreground: #0b0c0e;
-  --border: #25272c;
-  --input: #2e3036;
+  --border: #27292e;
+  --input: #303238;
   --control: #5b606a;
   --ring: #3b6fd8;
   --sidebar: transparent;
   --sidebar-foreground: #a9adb5;
   --sidebar-primary: #3b6fd8;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #1d2433;
+  --sidebar-accent: #232529; /* = --muted: neutral active item */
   --sidebar-accent-foreground: #e8e9eb;
-  --sidebar-border: #25272c;
+  --sidebar-border: #27292e;
   --sidebar-ring: #3b6fd8;
 }
 

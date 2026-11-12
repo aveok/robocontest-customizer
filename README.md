@@ -9,13 +9,17 @@ bitta accent (ko'k), tekis kontrollar.
 **Dizayn**
 - O'z palitrasi (light + dark), saytdagi mavzu menyusida nima tanlanganidan
   qat'i nazar. Light/dark saytning o'z `html.dark` klassiga ergashadi.
-- Butun sayt (sidebar + kontent) 1440px'li qutida, katta ekranda markazda.
-  Sidebar kontentdan bir pog'ona to'q. Kod yoziladigan sahifa
-  (`/tasks/<id>`, judge) to'liq kenglikda. ≤1440px va mobilda o'zgarish yo'q.
+- "Orolcha" layout: sidebar va kontent eng to'q fondagi ikkita alohida blok
+  (12px oraliq, 12px radius, ingichka ramka), ajratuvchi chiziq yo'q. Katta
+  ekranda 1440px kenglikda markazda. Kod yoziladigan sahifa (`/tasks/<id>`,
+  judge) to'liq kenglikda; mobilda (<768px) oddiy ko'rinish.
+- Ikkala blok ham kontentiga moslashadi (qisqa sahifa ostida bo'sh blok
+  qolmaydi; uzun sahifa ekran balandligida to'xtab, ichida scroll bo'ladi).
+  Sidebar'da "Hakam" ro'yxat ortidan; elementlar 32px; aktiv element neytral fonda, faqat ikonka ko'k.
 - Tugma, input, switch'lar tekis: 3D chekka va hover/bosishda siljish yo'q.
 - Bir qatordagi filtr tugmalari (aria-pressed) bitta segmentli guruh.
 - Jadvallar fonsiz, faqat ingichka chiziqlar; ustun sarlavhalari katta harfli
-  12px; qatorlar ~31px. Jadvaldagi nom havolalari oddiy matn rangida, ID'lar
+  12px (kontrast ≥5.5:1), hover'da qator ajraladi; qatorlar ~31px. Jadvaldagi nom havolalari oddiy matn rangida, ID'lar
   ko'k; badge'lar (qiyinlik) fonsiz rangli matn.
 - Burchaklar har doim 6px (saytdagi "Burchak yumaloqligi"dan qat'i nazar).
 - Masalalar (`/tasks`): "Turkum", "Qabul qilingan", "Jami" ustunlari yo'q,

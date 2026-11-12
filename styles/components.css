@@ -143,3 +143,15 @@ html.rc-theme main tbody td :is(button, a)[data-size^="icon"] {
   height: 1.5rem;
   min-height: 0;
 }
+
+/* ---------- Table footer pager ----------
+ * "Oldingi" / "Keyingi" under lists are ghost buttons and read as plain
+ * text; give them the outline-button frame. */
+html.rc-theme main footer > button[data-slot="button"][data-variant="ghost"] {
+  border-color: var(--border);
+  background: var(--card);
+}
+
+html.rc-theme main footer > button[data-slot="button"][data-variant="ghost"]:hover:not(:disabled) {
+  background: var(--muted);
+}

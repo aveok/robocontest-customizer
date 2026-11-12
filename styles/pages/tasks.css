@@ -4,8 +4,9 @@
  * screen (~1440x900), toolbar on one line.
  */
 
+/* 0.75rem: the island frame (12px around) takes some height too. */
 html.rc-theme[data-rc-path="/tasks"] main :has(> .mx-auto.w-full.space-y-6) {
-  padding-block: 1rem;
+  padding-block: 0.75rem;
 }
 
 html.rc-theme[data-rc-path="/tasks"] main .mx-auto.w-full.space-y-6 > :not(:last-child) {

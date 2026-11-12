@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "RC Theme",
-  "version": "0.1.0",
-  "description": "Unofficial. Classic look for robocontest.uz: classic palette, system mouse cursor, cleaner language menu.",
+  "version": "0.2.0",
+  "description": "Unofficial. Clean, compact redesign for robocontest.uz: modern dark/light theme, compact tables, less clutter.",
   "permissions": ["storage"],
   "background": {
     "service_worker": "background.js"
