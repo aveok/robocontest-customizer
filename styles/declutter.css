@@ -1,0 +1,58 @@
+/*
+ * RC Theme: less noise. Hides promos, footers, explainer text and info
+ * panels that don't help solving problems. Text-based cases (duplicate
+ * badges, descriptions repeating the title, "." bios) are done by tweaks in
+ * content.js and hidden through [data-rc-hidden] (base.css).
+ */
+
+/* ---------- Sidebar ----------
+ * Promo cards ("Chegirma −40% gacha", "Judge · N kun qoldi": both link to
+ * /plans), the footer (support email, phone, legal links, copyright) and
+ * the info pages "Qanday ishlaydi" (/system), "Bizning jamoa" (/team). */
+html.rc-theme #robo-app > .h-dvh > div:has(> div > main) > div:not(:has(> main)) :is(
+  div:has(> a[href$="/plans"]),
+  footer
+) {
+  display: none;
+}
+
+/* Their group ("Platforma") holds only these two: hide it with its label. */
+html.rc-theme nav[aria-label="Sidebar navigation"] > div:has(a[href$="/system"]):not(:has(a:not([href$="/system"], [href$="/team"]))),
+html.rc-theme nav[aria-label="Sidebar navigation"] a:is([href$="/system"], [href$="/team"]) {
+  display: none;
+}
+
+/* Top promo banner above the shell (discount countdown), when shown. */
+html.rc-theme #robo-app > .h-dvh:has(> div > div > main) > :not(:has(main)) {
+  display: none;
+}
+
+/* ---------- Page headers ----------
+ * The explainer line under every page title ("Dasturlash musobaqalarida
+ * ishtirok eting va ..."): the title already says what the page is. */
+html.rc-theme header[data-slot="page-header"] h1 + p {
+  display: none;
+}
+
+/* ---------- Home (/) ----------
+ * Greeting subtitle, and the two info-only panels without a single link:
+ * "Hamjamiyat statistikasi" (site totals) and "Hududlar bo'yicha" (map). */
+html.rc-theme[data-rc-path="/"] main section:has(h1) h1 ~ p {
+  display: none;
+}
+
+html.rc-theme[data-rc-path="/"] main [data-slot="panel"]:not(:has(a[href])) {
+  display: none;
+}
+
+/* ---------- Attempts (/attempts) ----------
+ * "Jadval yangilangan vaqt: ..." under the table. */
+html.rc-theme[data-rc-path="/attempts"] main .space-y-3 > p.text-muted-foreground:last-child {
+  display: none;
+}
+
+/* ---------- Courses (/courses) ----------
+ * "Kursni ko'rish →": the whole card is already the link. */
+html.rc-theme[data-rc-path="/courses"] main article:has(h2 a[href*="/courses/"]) > div:last-child > span:not([data-slot]) {
+  display: none;
+}

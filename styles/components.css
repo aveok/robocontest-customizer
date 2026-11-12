@@ -1,0 +1,145 @@
+/*
+ * RC Theme: components, styled once for the whole site.
+ * Matched by the site's shadcn data-slot attributes and its own
+ * .btn-arcade / .field-arcade / .switch-arcade classes, not by Tailwind
+ * utility classes (those change when the site is rebuilt).
+ */
+
+/* ---------- Buttons, inputs, switches: flat ----------
+ * The site draws a colored 2px bottom edge (box-shadow 0 2px 0 var(--*-edge))
+ * and shifts controls 1-2px on hover/press. Flat here: no edge, no shift.
+ * Focus stays visible through the site's own focus-visible ring. */
+html.rc-theme .btn-arcade,
+html.rc-theme .field-arcade,
+html.rc-theme .switch-arcade {
+  --btn-edge: transparent;
+  --field-edge: transparent;
+  --switch-edge: transparent;
+  translate: none;
+}
+
+/* Inputs and select triggers sit on the card surface, a step above the page. */
+html.rc-theme main :is(input[data-slot="input"], button[data-slot="combobox-anchor"], button[data-slot="select-trigger"]) {
+  background-color: var(--card);
+}
+
+/* ---------- Toggle groups (filter pills) ----------
+ * A row of aria-pressed buttons (Oson / O'rtacha / ... on /tasks) becomes one
+ * segmented control: a single bordered frame, quiet items, the pressed one
+ * filled. Reads as one control instead of 7 separate buttons. */
+html.rc-theme main div:has(> button[aria-pressed] + button[aria-pressed]) {
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--card);
+}
+
+html.rc-theme main div:has(> button[aria-pressed] + button[aria-pressed]) > button {
+  height: calc(var(--rc-control-h) - 6px);
+  min-height: 0;
+  padding-inline: 0.5rem;
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted-foreground);
+  box-shadow: none;
+}
+
+html.rc-theme main div:has(> button[aria-pressed] + button[aria-pressed]) > button:hover {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+html.rc-theme main div:has(> button[aria-pressed] + button[aria-pressed]) > button[aria-pressed="true"] {
+  background: var(--muted);
+  color: var(--foreground);
+}
+
+/* ---------- Badges in tables: text only ----------
+ * Difficulty "Oson" etc. were tinted pills on every row next to the green
+ * "solved" check. Colored text at row size, no padding (lines up with the
+ * column header). */
+html.rc-theme main td [data-slot="badge"]:is([class*="bg-success"], [class*="bg-warning"], [class*="bg-danger"], [class*="bg-info"], [class*="bg-signal"]) {
+  background-color: transparent;
+  border-color: transparent;
+  padding-inline: 0;
+  font-size: inherit;
+}
+
+/* Neutral label badges ("Judge" next to a name) keep their pill: as plain
+ * text they read as part of the name. Quieter text, fine border. */
+html.rc-theme main td [data-slot="badge"].bg-muted {
+  background-color: transparent;
+  border-color: var(--border);
+  color: var(--muted-foreground);
+}
+
+/* A column whose whole cell is muted small text (school, "7 oy oldin")
+ * at row size: one text size per row. Two-line cells (name + school under
+ * it) keep their 12px second line as hierarchy. */
+html.rc-theme main tbody td > .text-muted-foreground:only-child {
+  font-size: inherit;
+}
+
+/* ---------- Tables ----------
+ * No card fill behind tables, only hairlines: the data is the surface.
+ * Uppercase 12px column labels in a quieter color, ~31px rows everywhere. */
+html.rc-theme main [data-slot="card"]:has(> * table),
+html.rc-theme main .bg-card:has(table) {
+  background: transparent;
+}
+
+html.rc-theme main thead tr {
+  background: transparent;
+}
+
+html.rc-theme main thead th {
+  height: 2rem;
+  color: var(--rc-head-text);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Sortable headers put the label in a <button>; buttons don't inherit
+ * text-transform (preflight sets none). */
+html.rc-theme main thead th button {
+  text-transform: inherit;
+  letter-spacing: inherit;
+}
+
+html.rc-theme main thead th:not([aria-sort="ascending"], [aria-sort="descending"]) button {
+  color: inherit;
+}
+
+html.rc-theme main tbody tr {
+  border-color: var(--rc-row-line);
+}
+
+html.rc-theme main tbody tr:hover {
+  background: var(--rc-row-hover);
+}
+
+html.rc-theme main tbody td {
+  padding-block: 0.25rem;
+}
+
+/* Name links in tables (contest names, ...) in text color, blue on hover:
+ * a column of long blue names read as one blue wall. ID cells (.type-number,
+ * e.g. R078I) stay blue as the row's link marker, like on /tasks. Icon
+ * links (solved check) and status-colored links keep their own color. */
+html.rc-theme main tbody td:not(.type-number) a:not([data-slot], :has(> svg:only-child), [class*="text-success"], [class*="text-danger"], [class*="text-warning"]) {
+  color: var(--foreground);
+}
+
+html.rc-theme main tbody td:not(.type-number) a:not([data-slot], :has(> svg:only-child), [class*="text-success"], [class*="text-danger"], [class*="text-warning"]):hover {
+  color: var(--signal);
+}
+
+/* Row icon buttons (favorite etc.) are 32px and set the row height. */
+html.rc-theme main tbody td :is(button, a)[data-size^="icon"] {
+  width: 1.5rem;
+  height: 1.5rem;
+  min-height: 0;
+}

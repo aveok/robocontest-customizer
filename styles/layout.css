@@ -1,0 +1,54 @@
+/*
+ * RC Theme: site shell (sidebar, header, page frame).
+ *
+ * Site layout: #robo-app > .h-dvh column > [optional promo banner] + row
+ * (sidebar | header + main). The code workspace (/tasks/<id>, judge) has its
+ * own header + main layout without a sidebar; none of these selectors match
+ * it, so it stays full width.
+ */
+
+/* ---------- Centered shell ----------
+ * Every shell row boxed at 90rem (1440px) and centered; outside the box the
+ * darker --rc-outside. Screens <= 1440px and mobile look unchanged. */
+html.rc-theme #robo-app > .h-dvh:has(> div > div > main) {
+  background: var(--rc-outside);
+}
+
+html.rc-theme #robo-app > .h-dvh:has(> div > div > main) > * {
+  width: 100%;
+  max-width: 90rem;
+  margin-inline: auto;
+}
+
+html.rc-theme #robo-app > .h-dvh > div:has(> div > main) {
+  background: var(--background);
+}
+
+@media (min-width: 90.0625rem) {
+  html.rc-theme #robo-app > .h-dvh > div:has(> div > main) {
+    border-inline: 1px solid var(--border);
+  }
+}
+
+/* ---------- Sidebar ----------
+ * One step darker than the content so the two areas read as separate
+ * planes without a heavy border. Active item: tinted fill, full-strength
+ * text (no colored text). */
+html.rc-theme #robo-app > .h-dvh > div:has(> div > main) > div:not(:has(> main)) {
+  background: var(--rc-sidebar);
+}
+
+html.rc-theme nav[aria-label="Sidebar navigation"] [aria-current="page"] {
+  background-color: var(--sidebar-accent);
+  color: var(--sidebar-accent-foreground);
+}
+
+html.rc-theme nav[aria-label="Sidebar navigation"] a:not([aria-current="page"]):hover {
+  color: var(--foreground);
+}
+
+/* ---------- Page title ---------- */
+html.rc-theme main h1 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}

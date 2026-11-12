@@ -1,0 +1,45 @@
+/*
+ * RC Theme: problem list (/tasks).
+ * data-rc-path is set by content.js. Goal: 20 rows + pagination on one
+ * screen (~1440x900), toolbar on one line.
+ */
+
+html.rc-theme[data-rc-path="/tasks"] main :has(> .mx-auto.w-full.space-y-6) {
+  padding-block: 1rem;
+}
+
+html.rc-theme[data-rc-path="/tasks"] main .mx-auto.w-full.space-y-6 > :not(:last-child) {
+  margin-block-end: 1rem;
+}
+
+/* Filter group joins the search row (wraps when narrow). */
+html.rc-theme[data-rc-path="/tasks"] main .space-y-3 > .flex.flex-wrap > .w-full:has(> button[aria-pressed]) {
+  width: auto;
+  flex: none;
+}
+
+html.rc-theme[data-rc-path="/tasks"] main .space-y-3 > .flex.flex-wrap > div:has(> svg.lucide-search) {
+  flex-basis: 12rem;
+}
+
+/* One toolbar row = one height (search/select were 36px, pills 32px). */
+html.rc-theme[data-rc-path="/tasks"] main .space-y-3 > .flex.flex-wrap > :not(.w-full) :is(input, button) {
+  height: var(--rc-control-h);
+  min-height: 0;
+}
+
+html.rc-theme[data-rc-path="/tasks"] main .space-y-3 > .flex.flex-wrap button[data-size="icon"] {
+  width: var(--rc-control-h);
+}
+
+/* Category select 224px -> 180px: more room for search, the main action. */
+html.rc-theme[data-rc-path="/tasks"] main .space-y-3 > .flex.flex-wrap > div:has(> button[data-slot="combobox-anchor"]) {
+  width: 11.25rem;
+}
+
+/* Drop "Turkum", "Qabul qilingan", "Jami": the site itself marks exactly
+ * these as secondary (hidden below its @5xl container size). Matching that
+ * class keeps it language-independent. "Muvaffaqiyat %" sums them up. */
+html.rc-theme[data-rc-path="/tasks"] main table [class~="@5xl:table-cell"] {
+  display: none;
+}

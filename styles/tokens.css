@@ -1,0 +1,118 @@
+/*
+ * RC Theme: design tokens ("Modern minimal").
+ *
+ * One place for every color, radius and size the theme uses. The site
+ * (Tailwind + shadcn) reads its colors from CSS variables (--background,
+ * --card, --primary, ...); we set those here, plus our own --rc-* tokens.
+ *
+ * Scale:   text 12 / 14 / 16 / 20 / 24px · space 4 / 8 / 12 / 16 / 24 / 32px
+ * Surface: --rc-outside (page around the shell) < --background (shell)
+ *          < --rc-sidebar < --card (cards, inputs) < --popover (menus)
+ *
+ * Scoped under html.rc-theme (popup toggle removes it). html.rc-theme (0,1,1)
+ * beats the site's :root and [data-ui=...] rules; unlayered beats @layer.
+ * Light/dark follows the site's own html.dark class.
+ */
+
+/* ---------- Light ---------- */
+html.rc-theme {
+  --rc-outside: #eef0f3;
+  --rc-sidebar: #f7f8fa;
+  --rc-row-line: #eef0f2;
+  --rc-row-hover: #f6f7f9;
+  --rc-head-text: #8a9099;
+  --rc-control-h: 2rem;
+
+  --background: #ffffff;
+  --background2: #f7f8fa;
+  --foreground: #16181d;
+  --card: #ffffff;
+  --card-foreground: #16181d;
+  --popover: #ffffff;
+  --popover-foreground: #16181d;
+  --primary: #2563eb;
+  --primary-foreground: #ffffff;
+  --signal: #2563eb;
+  --secondary: #f2f3f5;
+  --secondary-foreground: #16181d;
+  --muted: #f2f3f5;
+  --muted-foreground: #6b7280;
+  --accent: #f2f3f5;
+  --accent-foreground: #16181d;
+  --success: #15803d;
+  --success-foreground: #ffffff;
+  --warning: #a16207;
+  --warning-foreground: #ffffff;
+  --danger: #dc2626;
+  --danger-foreground: #ffffff;
+  --info: #2563eb;
+  --info-foreground: #ffffff;
+  --border: #e6e8eb;
+  --input: #d9dce1;
+  --control: #9ca3af;
+  --ring: #2563eb;
+  --sidebar: transparent;
+  --sidebar-foreground: #4b5160;
+  --sidebar-primary: #2563eb;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8eefc;
+  --sidebar-accent-foreground: #16181d;
+  --sidebar-border: #e6e8eb;
+  --sidebar-ring: #2563eb;
+  --first-solve-mix: 14%;
+}
+
+/* ---------- Dark ---------- */
+html.rc-theme.dark {
+  --rc-outside: #0b0c0e;
+  --rc-sidebar: #0e0f11;
+  --rc-row-line: #1c1e22;
+  --rc-row-hover: #17181c;
+  --rc-head-text: #6f747d;
+
+  --background: #111214;
+  --background2: #16171a;
+  --foreground: #e8e9eb;
+  --card: #16171a;
+  --card-foreground: #e8e9eb;
+  --popover: #1b1c20;
+  --popover-foreground: #e8e9eb;
+  --primary: #3b6fd8;
+  --primary-foreground: #ffffff;
+  --signal: #7aa8ff;
+  --secondary: #1f2125;
+  --secondary-foreground: #e8e9eb;
+  --muted: #1f2125;
+  --muted-foreground: #8b9099;
+  --accent: #1f2125;
+  --accent-foreground: #e8e9eb;
+  --success: #3ccf91;
+  --success-foreground: #0b0c0e;
+  --warning: #e8b04a;
+  --warning-foreground: #0b0c0e;
+  --danger: #ff7a70;
+  --danger-foreground: #0b0c0e;
+  --info: #7aa8ff;
+  --info-foreground: #0b0c0e;
+  --border: #25272c;
+  --input: #2e3036;
+  --control: #5b606a;
+  --ring: #3b6fd8;
+  --sidebar: transparent;
+  --sidebar-foreground: #a9adb5;
+  --sidebar-primary: #3b6fd8;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #1d2433;
+  --sidebar-accent-foreground: #e8e9eb;
+  --sidebar-border: #25272c;
+  --sidebar-ring: #3b6fd8;
+}
+
+/* ---------- Corner radius ----------
+ * Site: --radius = var(--reader-radius, .5rem); --reader-radius comes from
+ * html[data-radius] (the hidden "Burchak yumaloqligi" setting, 0-16px).
+ * Pinned to 6px. [data-radius] variant outranks html[data-radius="0"]. */
+html.rc-theme,
+html.rc-theme[data-radius] {
+  --reader-radius: 0.375rem;
+}

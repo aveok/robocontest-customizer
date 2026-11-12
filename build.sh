@@ -9,6 +9,6 @@ out="dist/rc-theme-${version}.zip"
 
 mkdir -p dist
 rm -f "$out"
-zip -r -X -q "$out" manifest.json content.js styles popup icons -x '*.DS_Store'
+zip -r -X -q "$out" manifest.json background.js content.js styles popup icons/icon-*.png -x '*.DS_Store'
 echo "$out"
 unzip -l "$out"

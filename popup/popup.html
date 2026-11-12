@@ -7,6 +7,9 @@
     body { font: 14px system-ui, sans-serif; margin: 0; padding: 14px 16px; width: 200px; }
     h1 { font-size: 15px; margin: 0 0 10px; }
     label { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+    label + label { margin-top: 8px; }
+    label:has(input:disabled) { cursor: default; opacity: 0.5; }
+    .hint { margin: 6px 0 0; font-size: 12px; color: #868e96; }
   </style>
 </head>
 <body>
@@ -15,6 +18,11 @@
     <input type="checkbox" id="enabled">
     Yangi dizayn yoqilgan
   </label>
+  <label>
+    <input type="checkbox" id="dark" disabled>
+    Tungi rejim
+  </label>
+  <p class="hint" id="dark-hint" hidden>robocontest.uz sahifasini oching</p>
   <script src="popup.js"></script>
 </body>
 </html>
