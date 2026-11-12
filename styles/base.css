@@ -1,0 +1,91 @@
+/*
+ * RC Theme: behavior fixes (no visual design here).
+ * Cursor, hidden elements, animations off, link color, light/dark switching.
+ */
+
+/* ---------- Mouse cursor: system default ----------
+ * The site draws custom SVG cursors via --cursor-arrow / --cursor-pointer. */
+html.rc-theme,
+html.rc-theme.dark {
+  --cursor-arrow-art: default;
+  --cursor-pointer-art: pointer;
+  --cursor-arrow: default;
+  --cursor-pointer: pointer;
+}
+
+/* ---------- Language menu: hide "Özbekça (UZ)", keep "O'zbekcha (UZL)" ----------
+ * content.js marks the item with data-rc-hidden (matched by its "UZ" code). */
+html.rc-theme [data-rc-hidden] {
+  display: none !important;
+}
+
+/* ---------- Header: hide search and "Maxsus imkoniyatlar" buttons ----------
+ * Matched by lucide icon class, not aria-label (label changes with language).
+ * The accessibility button sits in its own <span>: hide the wrapper so no
+ * empty flex gap is left. That popover is also the site's only light/dark
+ * switch: the popup's "Tungi rejim" drives it (content.js setDark).
+ * Ctrl/⌘+K still opens search. */
+html.rc-theme header button:has(> svg.lucide-search),
+html.rc-theme header span:has(> button > svg.lucide-palette) {
+  display: none !important;
+}
+
+/* While content.js flips light/dark through the hidden popover, keep that
+ * popover invisible and without enter/exit animation (Reka then unmounts it
+ * right away). Not scoped to rc-theme: the switch works with the theme off. */
+html.rc-switching [data-reka-popper-content-wrapper] {
+  visibility: hidden !important;
+}
+
+html.rc-switching [data-reka-popper-content-wrapper] * {
+  animation: none !important;
+}
+
+/* ---------- Click / hover effects off ----------
+ * Particles: main.js appends <span style="position:fixed; ...; z-index:10000">
+ * to <body> on pointerdown over .btn-arcade / .field-arcade / .switch-arcade
+ * and animates them with element.animate(); hidden spans still finish and
+ * get removed. */
+html.rc-theme body > span[style*="z-index: 10000"][style*="pointer-events: none"] {
+  display: none !important;
+}
+
+/* Hover sheen on buttons and inputs. */
+html.rc-theme .btn-arcade:hover::after,
+html.rc-theme .field-arcade:hover {
+  animation: none !important;
+}
+
+/* Theme switch circle reveal (View Transition + WAAPI clip-path).
+ * !important beats animations in the cascade. */
+html.rc-theme::view-transition-old(root),
+html.rc-theme::view-transition-new(root) {
+  animation: none !important;
+  clip-path: none !important;
+}
+
+/* ---------- Link color ----------
+ * In @layer base like the site's own Classic rule, so Tailwind utilities
+ * (button text colors etc.) still win. Joining the site's existing "base"
+ * layer keeps its layer order. */
+@layer base {
+  html.rc-theme main a:where(:not([data-slot="badge"] *, :has(.font-tomorrow))) {
+    color: var(--signal);
+  }
+
+  /* Card links, user chips and heading links stay plain text (hover color
+   * comes from the site's own hover:text-signal). Higher specificity than
+   * the site's html[data-ui^=classic] main a rule. */
+  html.rc-theme main a:is(:has(> :not(svg)), :is(h1, h2, h3, h4, h5, h6) *) {
+    color: inherit;
+  }
+}
+
+/* ---------- Scrollbars ---------- */
+html.rc-theme ::-webkit-scrollbar-thumb {
+  background-color: var(--input);
+}
+
+html.rc-theme ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--control);
+}

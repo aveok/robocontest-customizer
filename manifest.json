@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
   "name": "RC Theme",
-  "version": "0.1.0",
-  "description": "Unofficial. Classic look for robocontest.uz: classic palette, system mouse cursor, cleaner language menu.",
+  "version": "0.2.0",
+  "description": "Unofficial. Clean, compact redesign for robocontest.uz: modern dark/light theme, compact tables, less clutter.",
   "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
   "icons": {
     "16": "icons/icon-16.png",
     "32": "icons/icon-32.png",
@@ -21,7 +24,15 @@
   "content_scripts": [
     {
       "matches": ["https://robocontest.uz/*", "https://*.robocontest.uz/*"],
-      "css": ["styles/theme.css", "styles/editor.css"],
+      "css": [
+        "styles/tokens.css",
+        "styles/base.css",
+        "styles/layout.css",
+        "styles/components.css",
+        "styles/pages/tasks.css",
+        "styles/declutter.css",
+        "styles/editor.css"
+      ],
       "js": ["content.js"],
       "run_at": "document_start"
     }
